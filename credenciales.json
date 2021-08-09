@@ -1,0 +1,25 @@
+
+[
+
+ { 
+    "device_type": "cisco_xe",
+    "host": "x.x.x.x",
+    "username": "user.name",
+    "password": "your password" 
+},
+
+ { 
+    "device_type": "cisco_xe",
+    "host": "x.x.x.x",
+    "username": "user.name",
+    "password": "your password" 
+},
+
+ { 
+   "device_type": "cisco_xe",
+    "host": "x.x.x.x",
+    "username": "user.name",
+    "password": "your password" 
+}
+
+]
