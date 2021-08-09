@@ -20,16 +20,13 @@ import json
 
 
 
+# Getting the json file from a directory
 
-with open ("/Users/franklin.pacheco/Documents/Networking/Python_Scripts/credenciales.json") as credenciales:
-    devices=json.load(credenciales)
+with open ("/Users/user.surname/your/directory/to/name.json") as json_file:   # .json file with all the credentials to connect to devices
+    devices=json.load(json_file)
 
-def get_input(prompt=''):
-    try:
-        line = raw_input(prompt)
-    except NameError:
-        line = input(prompt)
-    return line
+
+# Creating a loop to connect to all devices and running commands
 
 for device in devices:
     net_connect = ConnectHandler(device_type=device['device_type'], ip=device['host'], 
@@ -39,13 +36,13 @@ for device in devices:
     print(Tstart)
     print("Starting running show commands on this device")
     print("\n Loading configuration..........")
-    with open ("/Users/franklin.pacheco/Documents/Networking/Python_Scripts/show_commands.txt","r+") as x:
+    with open ("/Users/user.surname/your/directory/to/show_commands.txt","r+") as x:                     # .txt file with all configuration to run
         x=net_connect.send_config_from_file("show_commands.txt")
-    with open ("/Users/franklin.pacheco/Documents/Networking/Python_Scripts/Logs/Prechecks/DS01-07-HQ01-MX/DS01-07-HQ01-MX.txt","w+") as f:
+    with open ("/Users/user.surname/your/directory/to/DS01-07-HQ01-MX/DS01-07-HQ01-MX.txt","w+") as f:
         f.write(x)
-    with open ("/Users/franklin.pacheco/Documents/Networking/Python_Scripts/Logs/Prechecks/DS02-07-HQ01-MX/DS02-07-HQ01-MX.txt","w+") as y:
+    with open ("/Users/fuser.surname/your/directory/to/DS02-07-HQ01-MX/DS02-07-HQ01-MX.txt","w+") as y:
         y.write(x)
-    with open ("/Users/franklin.pacheco/Documents/Networking/Python_Scripts/Logs/Prechecks/SW01-07-HQ01-MX/SW01-07-HQ01-MX.txt","w+") as z:
+    with open ("/Users/user.surname/your/directory/to/SW01-07-HQ01-MX/SW01-07-HQ01-MX.txt","w+") as z:
         z.write(x)
     print("\n")
     print("Ending running show commands on this device this device", device['host'])
