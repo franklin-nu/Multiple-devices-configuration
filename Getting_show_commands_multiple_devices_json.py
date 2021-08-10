@@ -29,21 +29,31 @@ with open ("/Users/user.surname/your/directory/to/name.json") as json_file:   # 
 # Creating a loop to connect to all devices and running commands
 
 for device in devices:
+    
     net_connect = ConnectHandler(device_type=device['device_type'], ip=device['host'], 
                                 username=device['username'], password=device['password'])
+    
     Tstart = datetime.now()
     print("\n")
     print(Tstart)
-    print("Starting running show commands on this device")
+    print('#'*100)
+    print("Starting running show commands on this device", device['host'])
+    print('#'*100)
     print("\n Loading configuration..........")
+    
     with open ("/Users/user.surname/your/directory/to/show_commands.txt","r+") as x:                     # .txt file with all configuration to run
         x=net_connect.send_config_from_file("show_commands.txt")
-    with open ("/Users/user.surname/your/directory/to/DS01-07-HQ01-MX/DS01-07-HQ01-MX.txt","w+") as f:
-        f.write(x)
-    with open ("/Users/fuser.surname/your/directory/to/DS02-07-HQ01-MX/DS02-07-HQ01-MX.txt","w+") as y:
-        y.write(x)
-    with open ("/Users/user.surname/your/directory/to/SW01-07-HQ01-MX/SW01-07-HQ01-MX.txt","w+") as z:
-        z.write(x)
+
+    if "DS01-07-HQ01-MX#" in x:   
+        with open ("/Users/user.surname/your/directory/to/DS01-07-HQ01-MX/DS01-07-HQ01-MX.txt","w+") as f:
+            f.write(x)
+    elif "DS02-07-HQ01-MX#" in x:
+        with open ("/Users/fuser.surname/your/directory/to/DS02-07-HQ01-MX/DS02-07-HQ01-MX.txt","w+") as y:
+            y.write(x)
+    elif "SW01-07-HQ01-MX#" in x:    
+        with open ("/Users/user.surname/your/directory/to/SW01-07-HQ01-MX/SW01-07-HQ01-MX.txt","w+") as z:
+            z.write(x)
+    
     print("\n")
     print("Ending running show commands on this device this device", device['host'])
     print("\n ....Configuration loaded")
